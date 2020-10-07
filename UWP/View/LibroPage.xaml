@@ -1,0 +1,83 @@
+﻿<Page
+    x:Class="UWP.View.LibroPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWP.View"
+    xmlns:localModel="using:UWP.Model"
+    xmlns:localViewModel="using:UWP.ViewModel"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90"></RowDefinition>
+            <RowDefinition Height="500"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button x:Name="btAtras" Grid.Row="0" VerticalAlignment="Bottom" Margin="20,0,0,10" Click="btAtras_Click">
+            <SymbolIcon Symbol="Back"/>
+        </Button>
+        <FlipView x:Name="fvLibros" Grid.Row="1" Margin="10" ItemsSource="{x:Bind libroPageViewModel.Libros}" SelectedIndex="{x:Bind lvLibros.SelectedIndex, Mode=TwoWay}" Background="Transparent">
+            <FlipView.ItemTemplate>
+                <DataTemplate x:DataType="localModel:Libro">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Source="{x:Bind Imagen}"/>
+                        <StackPanel Grid.Column="2" Margin="0,10,0,0">
+                            <TextBlock Text="{x:Bind Titulo}" FontSize="40" FontWeight="Bold"></TextBlock>
+                            <TextBlock Text="{x:Bind Autor}" FontSize="25" FontWeight="Thin" FontStyle="Italic"></TextBlock>
+                            <TextBlock/>
+                            <TextBlock Text="{x:Bind DescGeneroAndClasificacion}" FontSize="12" FontWeight="Normal"></TextBlock>
+                            <RichTextBlock Margin="0,25,0,0">
+                                <Paragraph>
+                                    <Run Text="{x:Bind Descripcion}"></Run>
+                                </Paragraph>
+                            </RichTextBlock>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </FlipView.ItemTemplate>
+        </FlipView>
+        <StackPanel x:Name="spFiltro" Grid.Row="2" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{x:Bind libroPageViewModel.TextoFiltro}" Margin="20,10,0,5" FontWeight="Bold"/>
+            </StackPanel>
+            <Grid>
+                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" HorizontalScrollMode="Auto">
+                    <ListView x:Name="lvLibros" ItemsSource="{x:Bind fvLibros.ItemsSource}" SelectedIndex="{x:Bind fvLibros.SelectedIndex, Mode=TwoWay}" SelectionChanged="lvLibros_SelectionChanged">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="localModel:Libro">
+                                <Image Source="{x:Bind Imagen}" Width="130" Height="175"></Image>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" Background="Transparent"></StackPanel>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </ScrollViewer>
+                <Button VerticalAlignment="Stretch"
+                        Click="btPrev_Click"
+                        Content="&lt;" FontSize="20" Foreground="White">
+                    <Button.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.3"></SolidColorBrush>
+                    </Button.Background>
+                </Button>
+                <Button VerticalAlignment="Stretch"
+                        Click="btNext_Click"
+                        HorizontalAlignment="Right"
+                        Content="&gt;" FontSize="20" Foreground="White">
+                    <Button.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.3"></SolidColorBrush>
+                    </Button.Background>
+                </Button>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

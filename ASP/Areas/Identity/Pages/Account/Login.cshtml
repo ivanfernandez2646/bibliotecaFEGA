@@ -1,0 +1,59 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<!------ Include the above in your HEAD tag ---------->
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <img class="m-3" src="https://cdn3.iconfinder.com/data/icons/security-3-1/512/access-512.png" id="icon" alt="User Icon" width="100" height="100"/>
+        </div>
+
+        <!-- Login Form -->
+        <form id="account" method="post">
+            <div asp-validation-summary="All" class="m text-danger"></div>
+
+            <div class="form-group">
+                <input type="text" id="login" class="fadeIn second form-control" placeholder="Email" asp-for="Input.Email">
+            </div>
+
+            <div class="form-group">
+                <input type="password" id="password" class="fadeIn third form-control" placeholder="Contraseña" asp-for="Input.Password">
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label asp-for="Input.RememberMe">
+                        <input asp-for="Input.RememberMe" />
+                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Log In">
+            </div>
+        </form>
+
+        <!-- Other Options -->
+        <div id="formFooter">
+            <a id="forgot-password" asp-page="./ForgotPassword" class="underlineHover">Contraseña olvidada?</a>
+            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="underlineHover ml-2">Registrar nuevo usuario</a>
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <link href="~/css/login.css" rel="stylesheet">
+}
+
+
+

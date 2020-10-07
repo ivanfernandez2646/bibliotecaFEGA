@@ -1,0 +1,35 @@
+﻿<Page
+    x:Class="UWP.View.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <NavigationView x:ConnectionId='2' x:Name="MenuLateral" IsBackButtonVisible="Collapsed" IsSettingsVisible="False"                                                >
+            <NavigationView.MenuItems>
+                <NavigationViewItem x:ConnectionId='3' Content="Catálogo" x:Name="itemCatalogo" Icon="Home"/>
+                <NavigationViewItemHeader Content="Filtrar"/>
+                <NavigationViewItem x:ConnectionId='4' Content="Clasificaciones" x:Name="itemClasificaciones" Icon="Filter"/>
+                <NavigationViewItem x:ConnectionId='5' Content="Géneros" x:Name="itemGeneros" Icon="Filter"/>
+            </NavigationView.MenuItems>
+            <NavigationView.PaneFooter>
+                <NavigationViewItem x:ConnectionId='6'                                   >
+                    <ContentControl>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE7E8;"/>
+                            <TextBlock Text="Salir" VerticalAlignment="Top" Padding="10,0,0,0"/>
+                        </StackPanel>
+                    </ContentControl>
+                </NavigationViewItem>
+            </NavigationView.PaneFooter>
+            <Frame x:ConnectionId='7' x:Name="frame">
+
+            </Frame>
+        </NavigationView>
+    </Grid>
+</Page>
+

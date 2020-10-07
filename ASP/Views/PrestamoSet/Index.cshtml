@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ASPNET.Models.PrestamoSet>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Mis Préstamos</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LibroLibro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaFin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaDevolucion)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="@(item.FechaFin+","+item.FechaDevolucion)">
+                <td>
+                    @Html.DisplayFor(modelItem => item.LibroLibro.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaFin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaDevolucion)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("tbody").children().each(function () {
+
+                var fechaFinString = $(this).attr("id").split(",")[0].split(" ")[0];
+                var fechaFinSplit = fechaFinString.split("/");
+                var fechaFinDate = new Date(+fechaFinSplit[2], fechaFinSplit[1] - 1, +fechaFinSplit[0]); 
+
+                //FechaFin es igual a "" si no tiene una fecha de fin
+                var fechaDevString = $(this).attr("id").split(",")[1].split(" ")[0];
+
+                if (fechaDevString == "") {
+                    if (fechaFinDate < Date.now()) {
+                        $(this).attr("class", "table-danger");
+                    } else if (fechaFinDate > Date.now()) {
+                        $(this).attr("class", "table-success");
+                    }
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="BibliotecaContext" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="BibliotecaContextContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="UsuarioSet" EntityType="BibliotecaContext.Usuario" />
+    <EntitySet Name="AutorSet" EntityType="BibliotecaContext.Autor" />
+    <EntitySet Name="ClasificacionSet" EntityType="BibliotecaContext.Clasificacion" />
+    <EntitySet Name="GeneroSet" EntityType="BibliotecaContext.Genero" />
+    <EntitySet Name="EditorialSet" EntityType="BibliotecaContext.Editorial" />
+    <EntitySet Name="LibroSet" EntityType="BibliotecaContext.Libro" />
+    <EntitySet Name="PrestamoSet" EntityType="BibliotecaContext.Prestamo" />
+    <EntitySet Name="ConfiguracionSet" EntityType="BibliotecaContext.Configuracion" />
+    <AssociationSet Name="AutorLibro" Association="BibliotecaContext.AutorLibro">
+      <End Role="Autor" EntitySet="AutorSet" />
+      <End Role="Libro" EntitySet="LibroSet" />
+    </AssociationSet>
+    <AssociationSet Name="ClasificacionLibro" Association="BibliotecaContext.ClasificacionLibro">
+      <End Role="Clasificacion" EntitySet="ClasificacionSet" />
+      <End Role="Libro" EntitySet="LibroSet" />
+    </AssociationSet>
+    <AssociationSet Name="GeneroLibro" Association="BibliotecaContext.GeneroLibro">
+      <End Role="Genero" EntitySet="GeneroSet" />
+      <End Role="Libro" EntitySet="LibroSet" />
+    </AssociationSet>
+    <AssociationSet Name="EditorialLibro" Association="BibliotecaContext.EditorialLibro">
+      <End Role="Editorial" EntitySet="EditorialSet" />
+      <End Role="Libro" EntitySet="LibroSet" />
+    </AssociationSet>
+    <AssociationSet Name="UsuarioPrestamo" Association="BibliotecaContext.UsuarioPrestamo">
+      <End Role="Usuario" EntitySet="UsuarioSet" />
+      <End Role="Prestamo" EntitySet="PrestamoSet" />
+    </AssociationSet>
+    <AssociationSet Name="LibroPrestamo" Association="BibliotecaContext.LibroPrestamo">
+      <End Role="Libro" EntitySet="LibroSet" />
+      <End Role="Prestamo" EntitySet="PrestamoSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="DNI" />
+    </Key>
+    <Property Name="DNI" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="10" />
+    <Property Name="Nombre" Type="String" Nullable="false" />
+    <Property Name="Apellidos" Type="String" Nullable="false" />
+    <Property Name="Direccion" Type="String" Nullable="false" />
+    <Property Name="Poblacion" Type="String" Nullable="false" />
+    <Property Name="CodigoPostal" Type="String" Nullable="false" />
+    <Property Name="Provincia" Type="String" Nullable="false" />
+    <Property Name="Telefono1" Type="String" Nullable="false" />
+    <Property Name="Telefono2" Type="String" Nullable="true" />
+    <Property Name="InicioSesion" Type="Boolean" Nullable="true" />
+    <Property Name="Salt" Type="String" Nullable="true" />
+    <NavigationProperty Name="Prestamo" Relationship="BibliotecaContext.UsuarioPrestamo" FromRole="Usuario" ToRole="Prestamo" />
+  </EntityType>
+  <EntityType Name="Autor">
+    <Key>
+      <PropertyRef Name="AutorId" />
+    </Key>
+    <Property Name="AutorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" />
+    <Property Name="Apellidos" Type="String" Nullable="false" />
+    <NavigationProperty Name="Libro" Relationship="BibliotecaContext.AutorLibro" FromRole="Autor" ToRole="Libro" />
+  </EntityType>
+  <EntityType Name="Clasificacion">
+    <Key>
+      <PropertyRef Name="ClasificacionId" />
+    </Key>
+    <Property Name="ClasificacionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" Nullable="false" />
+    <NavigationProperty Name="Libro" Relationship="BibliotecaContext.ClasificacionLibro" FromRole="Clasificacion" ToRole="Libro" />
+  </EntityType>
+  <EntityType Name="Genero">
+    <Key>
+      <PropertyRef Name="GeneroId" />
+    </Key>
+    <Property Name="GeneroId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" Nullable="false" />
+    <NavigationProperty Name="Libro" Relationship="BibliotecaContext.GeneroLibro" FromRole="Genero" ToRole="Libro" />
+  </EntityType>
+  <EntityType Name="Editorial">
+    <Key>
+      <PropertyRef Name="EditorialId" />
+    </Key>
+    <Property Name="EditorialId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RazonSocial" Type="String" Nullable="false" />
+    <Property Name="Direccion" Type="String" Nullable="false" />
+    <Property Name="Poblacion" Type="String" Nullable="false" />
+    <Property Name="CodigoPostal" Type="String" Nullable="false" />
+    <Property Name="Provincia" Type="String" Nullable="false" />
+    <Property Name="Telefono1" Type="String" Nullable="false" />
+    <Property Name="Telefono2" Type="String" Nullable="true" />
+    <Property Name="PersonaContacto" Type="String" Nullable="true" />
+    <Property Name="Observaciones" Type="String" Nullable="true" />
+    <NavigationProperty Name="Libro" Relationship="BibliotecaContext.EditorialLibro" FromRole="Editorial" ToRole="Libro" />
+  </EntityType>
+  <EntityType Name="Libro">
+    <Key>
+      <PropertyRef Name="LibroId" />
+    </Key>
+    <Property Name="LibroId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Titulo" Type="String" Nullable="false" />
+    <Property Name="Descripción" Type="String" Nullable="false" />
+    <Property Name="Stock" Type="Int32" Nullable="true" />
+    <Property Name="StockDisponible" Type="Int32" Nullable="true" />
+    <Property Name="Imagen" Type="Binary" Nullable="true" />
+    <NavigationProperty Name="Autor" Relationship="BibliotecaContext.AutorLibro" FromRole="Libro" ToRole="Autor" />
+    <Property Name="AutorAutorId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Clasificacion" Relationship="BibliotecaContext.ClasificacionLibro" FromRole="Libro" ToRole="Clasificacion" />
+    <Property Name="ClasificacionClasificacionId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Genero" Relationship="BibliotecaContext.GeneroLibro" FromRole="Libro" ToRole="Genero" />
+    <Property Name="GeneroGeneroId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Editorial" Relationship="BibliotecaContext.EditorialLibro" FromRole="Libro" ToRole="Editorial" />
+    <Property Name="EditorialEditorialId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Prestamo" Relationship="BibliotecaContext.LibroPrestamo" FromRole="Libro" ToRole="Prestamo" />
+  </EntityType>
+  <EntityType Name="Prestamo">
+    <Key>
+      <PropertyRef Name="PrestamoId" />
+    </Key>
+    <Property Name="PrestamoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaInicio" Type="DateTime" Nullable="false" />
+    <Property Name="FechaFin" Type="DateTime" Nullable="false" />
+    <Property Name="FechaDevolucion" Type="DateTime" Nullable="true" />
+    <NavigationProperty Name="Usuario" Relationship="BibliotecaContext.UsuarioPrestamo" FromRole="Prestamo" ToRole="Usuario" />
+    <Property Name="UsuarioDNI" Type="String" Nullable="false" MaxLength="10" />
+    <NavigationProperty Name="Libro" Relationship="BibliotecaContext.LibroPrestamo" FromRole="Prestamo" ToRole="Libro" />
+    <Property Name="LibroLibroId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Configuracion">
+    <Key>
+      <PropertyRef Name="ConfiguracionId" />
+    </Key>
+    <Property Name="ConfiguracionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NumDiasPrestamo1" Type="Int32" Nullable="true" />
+    <Property Name="NumDiasPrestamo2" Type="Int32" Nullable="true" />
+    <Property Name="MaxPrestamoUsuario" Type="Int32" Nullable="true" />
+  </EntityType>
+  <Association Name="AutorLibro">
+    <End Type="BibliotecaContext.Autor" Role="Autor" Multiplicity="1" />
+    <End Type="BibliotecaContext.Libro" Role="Libro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Autor">
+        <PropertyRef Name="AutorId" />
+      </Principal>
+      <Dependent Role="Libro">
+        <PropertyRef Name="AutorAutorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClasificacionLibro">
+    <End Type="BibliotecaContext.Clasificacion" Role="Clasificacion" Multiplicity="1" />
+    <End Type="BibliotecaContext.Libro" Role="Libro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clasificacion">
+        <PropertyRef Name="ClasificacionId" />
+      </Principal>
+      <Dependent Role="Libro">
+        <PropertyRef Name="ClasificacionClasificacionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GeneroLibro">
+    <End Type="BibliotecaContext.Genero" Role="Genero" Multiplicity="1" />
+    <End Type="BibliotecaContext.Libro" Role="Libro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genero">
+        <PropertyRef Name="GeneroId" />
+      </Principal>
+      <Dependent Role="Libro">
+        <PropertyRef Name="GeneroGeneroId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EditorialLibro">
+    <End Type="BibliotecaContext.Editorial" Role="Editorial" Multiplicity="1" />
+    <End Type="BibliotecaContext.Libro" Role="Libro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Editorial">
+        <PropertyRef Name="EditorialId" />
+      </Principal>
+      <Dependent Role="Libro">
+        <PropertyRef Name="EditorialEditorialId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UsuarioPrestamo">
+    <End Type="BibliotecaContext.Usuario" Role="Usuario" Multiplicity="1" />
+    <End Type="BibliotecaContext.Prestamo" Role="Prestamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="DNI" />
+      </Principal>
+      <Dependent Role="Prestamo">
+        <PropertyRef Name="UsuarioDNI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LibroPrestamo">
+    <End Type="BibliotecaContext.Libro" Role="Libro" Multiplicity="1" />
+    <End Type="BibliotecaContext.Prestamo" Role="Prestamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Libro">
+        <PropertyRef Name="LibroId" />
+      </Principal>
+      <Dependent Role="Prestamo">
+        <PropertyRef Name="LibroLibroId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BibliotecaContext.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="BibliotecaContextStoreContainer">
+    <EntitySet Name="UsuarioSet" EntityType="BibliotecaContext.Store.UsuarioSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AutorSet" EntityType="BibliotecaContext.Store.AutorSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClasificacionSet" EntityType="BibliotecaContext.Store.ClasificacionSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GeneroSet" EntityType="BibliotecaContext.Store.GeneroSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EditorialSet" EntityType="BibliotecaContext.Store.EditorialSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LibroSet" EntityType="BibliotecaContext.Store.LibroSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PrestamoSet" EntityType="BibliotecaContext.Store.PrestamoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ConfiguracionSet" EntityType="BibliotecaContext.Store.ConfiguracionSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="AutorLibro" Association="BibliotecaContext.Store.AutorLibro">
+      <End Role="Autor" EntitySet="AutorSet" />
+      <End Role="Libro" EntitySet="LibroSet" />
+    </AssociationSet>
+    <AssociationSet Name="ClasificacionLibro" Association="BibliotecaContext.Store.ClasificacionLibro">
+      <End Role="Clasificacion" EntitySet="ClasificacionSet" />
+      <End Role="Libro" EntitySet="LibroSet" />
+    </AssociationSet>
+    <AssociationSet Name="GeneroLibro" Association="BibliotecaContext.Store.GeneroLibro">
+      <End Role="Genero" EntitySet="GeneroSet" />
+      <End Role="Libro" EntitySet="LibroSet" />
+    </AssociationSet>
+    <AssociationSet Name="EditorialLibro" Association="BibliotecaContext.Store.EditorialLibro">
+      <End Role="Editorial" EntitySet="EditorialSet" />
+      <End Role="Libro" EntitySet="LibroSet" />
+    </AssociationSet>
+    <AssociationSet Name="UsuarioPrestamo" Association="BibliotecaContext.Store.UsuarioPrestamo">
+      <End Role="Usuario" EntitySet="UsuarioSet" />
+      <End Role="Prestamo" EntitySet="PrestamoSet" />
+    </AssociationSet>
+    <AssociationSet Name="LibroPrestamo" Association="BibliotecaContext.Store.LibroPrestamo">
+      <End Role="Libro" EntitySet="LibroSet" />
+      <End Role="Prestamo" EntitySet="PrestamoSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UsuarioSet">
+    <Key>
+      <PropertyRef Name="DNI" />
+    </Key>
+    <Property Name="DNI" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Apellidos" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Direccion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Poblacion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CodigoPostal" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Provincia" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Telefono1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Telefono2" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="InicioSesion" Type="bit" Nullable="true" />
+    <Property Name="Salt" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="AutorSet">
+    <Key>
+      <PropertyRef Name="AutorId" />
+    </Key>
+    <Property Name="AutorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Apellidos" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClasificacionSet">
+    <Key>
+      <PropertyRef Name="ClasificacionId" />
+    </Key>
+    <Property Name="ClasificacionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GeneroSet">
+    <Key>
+      <PropertyRef Name="GeneroId" />
+    </Key>
+    <Property Name="GeneroId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EditorialSet">
+    <Key>
+      <PropertyRef Name="EditorialId" />
+    </Key>
+    <Property Name="EditorialId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RazonSocial" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Direccion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Poblacion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CodigoPostal" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Provincia" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Telefono1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Telefono2" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PersonaContacto" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Observaciones" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="LibroSet">
+    <Key>
+      <PropertyRef Name="LibroId" />
+    </Key>
+    <Property Name="LibroId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Titulo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Descripción" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Stock" Type="int" Nullable="true" />
+    <Property Name="StockDisponible" Type="int" Nullable="true" />
+    <Property Name="Imagen" Type="varbinary(max)" Nullable="true" />
+    <Property Name="AutorAutorId" Type="int" Nullable="false" />
+    <Property Name="ClasificacionClasificacionId" Type="int" Nullable="false" />
+    <Property Name="GeneroGeneroId" Type="int" Nullable="false" />
+    <Property Name="EditorialEditorialId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PrestamoSet">
+    <Key>
+      <PropertyRef Name="PrestamoId" />
+    </Key>
+    <Property Name="PrestamoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FechaInicio" Type="datetime" Nullable="false" />
+    <Property Name="FechaFin" Type="datetime" Nullable="false" />
+    <Property Name="FechaDevolucion" Type="datetime" Nullable="true" />
+    <Property Name="UsuarioDNI" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="LibroLibroId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ConfiguracionSet">
+    <Key>
+      <PropertyRef Name="ConfiguracionId" />
+    </Key>
+    <Property Name="ConfiguracionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NumDiasPrestamo1" Type="int" Nullable="true" />
+    <Property Name="NumDiasPrestamo2" Type="int" Nullable="true" />
+    <Property Name="MaxPrestamoUsuario" Type="int" Nullable="true" />
+  </EntityType>
+  <Association Name="AutorLibro">
+    <End Role="Autor" Type="BibliotecaContext.Store.AutorSet" Multiplicity="1" />
+    <End Role="Libro" Type="BibliotecaContext.Store.LibroSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Autor">
+        <PropertyRef Name="AutorId" />
+      </Principal>
+      <Dependent Role="Libro">
+        <PropertyRef Name="AutorAutorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClasificacionLibro">
+    <End Role="Clasificacion" Type="BibliotecaContext.Store.ClasificacionSet" Multiplicity="1" />
+    <End Role="Libro" Type="BibliotecaContext.Store.LibroSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clasificacion">
+        <PropertyRef Name="ClasificacionId" />
+      </Principal>
+      <Dependent Role="Libro">
+        <PropertyRef Name="ClasificacionClasificacionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GeneroLibro">
+    <End Role="Genero" Type="BibliotecaContext.Store.GeneroSet" Multiplicity="1" />
+    <End Role="Libro" Type="BibliotecaContext.Store.LibroSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genero">
+        <PropertyRef Name="GeneroId" />
+      </Principal>
+      <Dependent Role="Libro">
+        <PropertyRef Name="GeneroGeneroId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EditorialLibro">
+    <End Role="Editorial" Type="BibliotecaContext.Store.EditorialSet" Multiplicity="1" />
+    <End Role="Libro" Type="BibliotecaContext.Store.LibroSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Editorial">
+        <PropertyRef Name="EditorialId" />
+      </Principal>
+      <Dependent Role="Libro">
+        <PropertyRef Name="EditorialEditorialId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UsuarioPrestamo">
+    <End Role="Usuario" Type="BibliotecaContext.Store.UsuarioSet" Multiplicity="1" />
+    <End Role="Prestamo" Type="BibliotecaContext.Store.PrestamoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="DNI" />
+      </Principal>
+      <Dependent Role="Prestamo">
+        <PropertyRef Name="UsuarioDNI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LibroPrestamo">
+    <End Role="Libro" Type="BibliotecaContext.Store.LibroSet" Multiplicity="1" />
+    <End Role="Prestamo" Type="BibliotecaContext.Store.PrestamoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Libro">
+        <PropertyRef Name="LibroId" />
+      </Principal>
+      <Dependent Role="Prestamo">
+        <PropertyRef Name="LibroLibroId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

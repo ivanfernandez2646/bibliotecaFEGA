@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c249b5cae3a8473d9673be76f567dcda" Name="Diagram1" >
+        <EntityTypeShape EntityType="BibliotecaContext.Usuario" Width="1.5" PointX="9.5" PointY="0.5" />
+        <EntityTypeShape EntityType="BibliotecaContext.Autor" Width="1.5" PointX="1" PointY="0.5" />
+        <EntityTypeShape EntityType="BibliotecaContext.Clasificacion" Width="1.5" PointX="1" PointY="2.375" />
+        <EntityTypeShape EntityType="BibliotecaContext.Genero" Width="1.5" PointX="1" PointY="4.25" />
+        <EntityTypeShape EntityType="BibliotecaContext.Editorial" Width="1.5" PointX="7" PointY="3.375" />
+        <EntityTypeShape EntityType="BibliotecaContext.Libro" Width="1.5" PointX="4.25" PointY="0.5" />
+        <EntityTypeShape EntityType="BibliotecaContext.Prestamo" Width="1.5" PointX="7" PointY="0.5" />
+        <EntityTypeShape EntityType="BibliotecaContext.Configuracion" Width="1.5" PointX="9.5" PointY="4" />
+        <AssociationConnector Association="BibliotecaContext.AutorLibro" />
+        <AssociationConnector Association="BibliotecaContext.ClasificacionLibro" />
+        <AssociationConnector Association="BibliotecaContext.GeneroLibro" />
+        <AssociationConnector Association="BibliotecaContext.EditorialLibro" />
+        <AssociationConnector Association="BibliotecaContext.UsuarioPrestamo" />
+        <AssociationConnector Association="BibliotecaContext.LibroPrestamo" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

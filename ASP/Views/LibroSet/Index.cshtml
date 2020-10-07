@@ -1,0 +1,123 @@
+﻿@model IEnumerable<ASPNET.Models.LibroSet>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+<div class="row ml-0 d-flex align-items-center">
+    <a id="busquedaAvanzada" href="#" data-toggle="collapse" data-target="#abrirFiltros">Búsqueda avanzada</a>
+    <form asp-action="Index">
+        <input type="submit" value="" class="ml-2" style="width:20px; height:20px; background:url(https://cdn3.iconfinder.com/data/icons/vector-icons-2/96/83-512.png); border:none; background-repeat:no-repeat;background-size:100% 100%;" width="20" height="20">
+    </form>
+</div>
+<div id="abrirFiltros" class="row collapse in mt-2">
+    <div class="col-md-4">
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Clasificación</label>
+                <select name="clasificacionId" class="form-control" asp-items="ViewBag.ClasificacionId">
+                    <option value="-1">Todos los libros</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Género</label>
+                <select name="generoId" class="form-control" asp-items="ViewBag.GeneroId">
+                    <option value="-1">Todos los libros</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Filtrar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripción)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StockDisponible)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AutorAutor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClasificacionClasificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GeneroGenero)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="data:image/jpg;base64,@System.Convert.ToBase64String(item.Imagen)" widht="60" height="100" />
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.LibroId">@Html.DisplayFor(modelItem => item.Titulo)</a>
+                </td>
+                <td>
+                    <div>
+                        @Html.DisplayFor(modalItem => item.DescripcionCorta)
+                        <a href="#" id="@(item.LibroId)" data-toggle="collapse" data-target="@("#abrirDescripcion"+@item.LibroId)">Leer más</a>
+                    </div>
+
+                    <div class="collapse" id="@("abrirDescripcion"+@item.LibroId)">
+                        @Html.DisplayFor(modelItem => item.Descripción)
+                        <a href="#" id="@(item.LibroId)" data-toggle="collapse" data-target="@("#abrirDescripcion"+@item.LibroId)">Leer menos</a>
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StockDisponible)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreCompletoAutor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClasificacionClasificacion.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GeneroGenero.Descripcion)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script>
+        $("a").click(function () {
+            $(this).parent().css("display", "none");
+
+            if ($(this).text() == "Leer más") {
+                $(this).parent().next().css("display", "block");
+            } else {
+                $(this).parent().prev().css("display", "block");
+            }
+        });
+
+        $("#busquedaAvanzada").click(function () {
+            $("#busquedaAvanzada").parent().css("display", "block");
+        });
+        $("#refreshFresh").click(function () {
+
+        });
+    </script>
+}
+

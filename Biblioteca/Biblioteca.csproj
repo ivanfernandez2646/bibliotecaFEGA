@@ -1,0 +1,567 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{79F7ABCB-D1C4-40B9-996F-B5481BA0AA93}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Biblioteca</RootNamespace>
+    <AssemblyName>Biblioteca</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logoPrincipal %281%29.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Assessment, Version=1.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.Assessment.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.BatchParserClient, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.BatchParserClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfoExtended, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.ConnectionInfoExtended.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Diagnostics.Strace, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.Diagnostics.Strace.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Dmf, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.Dmf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Dmf.Common, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.Dmf.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Assessment, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.Management.Assessment.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Collector, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.Management.Collector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.CollectorEnum, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.Management.CollectorEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.RegisteredServers, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.Management.RegisteredServers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.Management.Sdk.Sfc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.SqlParser, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.Management.SqlParser.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Utility, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.Management.Utility.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.UtilityEnum, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.Management.UtilityEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.XEvent, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.Management.XEvent.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.XEventDbScoped, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.Management.XEventDbScoped.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.XEventDbScopedEnum, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.Management.XEventDbScopedEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.XEventEnum, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.Management.XEventEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.PolicyEnum, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.PolicyEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.RegSvrEnum, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.RegSvrEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.ServiceBrokerEnum, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.ServiceBrokerEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.Smo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SmoExtended, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.SmoExtended.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SqlClrProvider, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.SqlClrProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SqlEnum, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.SqlEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SqlTDiagm, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.SqlTDiagm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SqlWmiManagement, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.SqlWmiManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SString, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.SString.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.WmiEnum, Version=15.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\lib\net45\Microsoft.SqlServer.WmiEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Frm\CRUDAutor\FrmAutorCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDAutor\FrmAutorCreate.Designer.cs">
+      <DependentUpon>FrmAutorCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDLibro\FrmAbrirFoto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDLibro\FrmAbrirFoto.Designer.cs">
+      <DependentUpon>FrmAbrirFoto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDLibro\FrmLibroRead.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDLibro\FrmLibroRead.Designer.cs">
+      <DependentUpon>FrmLibroRead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDAutor\FrmAutorUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDAutor\FrmAutorUpdate.Designer.cs">
+      <DependentUpon>FrmAutorUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDClasificacion\FrmClasificacionCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDClasificacion\FrmClasificacionCreate.Designer.cs">
+      <DependentUpon>FrmClasificacionCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDClasificacion\FrmClasificacionRead.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDClasificacion\FrmClasificacionRead.Designer.cs">
+      <DependentUpon>FrmClasificacionRead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDClasificacion\FrmClasificacionUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDClasificacion\FrmClasificacionUpdate.Designer.cs">
+      <DependentUpon>FrmClasificacionUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDEditorial\FrmEditorialCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDEditorial\FrmEditorialCreate.Designer.cs">
+      <DependentUpon>FrmEditorialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDEditorial\FrmEditorialRead.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDEditorial\FrmEditorialRead.Designer.cs">
+      <DependentUpon>FrmEditorialRead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDEditorial\FrmEditorialUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDEditorial\FrmEditorialUpdate.Designer.cs">
+      <DependentUpon>FrmEditorialUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDGenero\FrmGeneroCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDGenero\FrmGeneroCreate.Designer.cs">
+      <DependentUpon>FrmGeneroCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDGenero\FrmGeneroRead.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDGenero\FrmGeneroRead.Designer.cs">
+      <DependentUpon>FrmGeneroRead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDGenero\FrmGeneroUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDGenero\FrmGeneroUpdate.Designer.cs">
+      <DependentUpon>FrmGeneroUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDLibro\FrmLibroCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDLibro\FrmLibroCreate.Designer.cs">
+      <DependentUpon>FrmLibroCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDAutor\FrmAutorRead.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDAutor\FrmAutorRead.Designer.cs">
+      <DependentUpon>FrmAutorRead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDLibro\FrmLibroUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDLibro\FrmLibroUpdate.Designer.cs">
+      <DependentUpon>FrmLibroUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDPrestamo\FrmPrestamoCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDPrestamo\FrmPrestamoCreate.Designer.cs">
+      <DependentUpon>FrmPrestamoCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDPrestamo\FrmPrestamoHistoricoRead.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDPrestamo\FrmPrestamoHistoricoRead.Designer.cs">
+      <DependentUpon>FrmPrestamoHistoricoRead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDPrestamo\FrmPrestamoRead.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDPrestamo\FrmPrestamoRead.Designer.cs">
+      <DependentUpon>FrmPrestamoRead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDUsuario\FrmUsuarioCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDUsuario\FrmUsuarioCreate.Designer.cs">
+      <DependentUpon>FrmUsuarioCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDUsuario\FrmUsuarioRead.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDUsuario\FrmUsuarioRead.Designer.cs">
+      <DependentUpon>FrmUsuarioRead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDUsuario\FrmUsuarioNewPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDUsuario\FrmUsuarioNewPassword.Designer.cs">
+      <DependentUpon>FrmUsuarioNewPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDUsuario\FrmUsuarioUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDUsuario\FrmUsuarioUpdate.Designer.cs">
+      <DependentUpon>FrmUsuarioUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\CRUDUsuario\FrmNewPasswordUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\CRUDUsuario\FrmNewPasswordUpdate.Designer.cs">
+      <DependentUpon>FrmNewPasswordUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmAcercaDe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmAcercaDe.Designer.cs">
+      <DependentUpon>FrmAcercaDe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmConfiguracionUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmConfiguracionUpdate.Designer.cs">
+      <DependentUpon>FrmConfiguracionUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmPpal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmPpal.Designer.cs">
+      <DependentUpon>FrmPpal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm\FrmSplash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm\FrmSplash.Designer.cs">
+      <DependentUpon>FrmSplash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Password.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RefreshTables.cs" />
+    <Compile Include="WinApi.cs" />
+    <EmbeddedResource Include="Frm\CRUDAutor\FrmAutorCreate.resx">
+      <DependentUpon>FrmAutorCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDEditorial\FrmEditorialUpdate.resx">
+      <DependentUpon>FrmEditorialUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDLibro\FrmAbrirFoto.resx">
+      <DependentUpon>FrmAbrirFoto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDLibro\FrmLibroCreate.resx">
+      <DependentUpon>FrmLibroCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDLibro\FrmLibroRead.resx">
+      <DependentUpon>FrmLibroRead.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDAutor\FrmAutorUpdate.resx">
+      <DependentUpon>FrmAutorUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDClasificacion\FrmClasificacionCreate.resx">
+      <DependentUpon>FrmClasificacionCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDClasificacion\FrmClasificacionRead.resx">
+      <DependentUpon>FrmClasificacionRead.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDClasificacion\FrmClasificacionUpdate.resx">
+      <DependentUpon>FrmClasificacionUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDEditorial\FrmEditorialCreate.resx">
+      <DependentUpon>FrmEditorialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDEditorial\FrmEditorialRead.resx">
+      <DependentUpon>FrmEditorialRead.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDGenero\FrmGeneroCreate.resx">
+      <DependentUpon>FrmGeneroCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDGenero\FrmGeneroRead.resx">
+      <DependentUpon>FrmGeneroRead.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDGenero\FrmGeneroUpdate.resx">
+      <DependentUpon>FrmGeneroUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDAutor\FrmAutorRead.resx">
+      <DependentUpon>FrmAutorRead.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDLibro\FrmLibroUpdate.resx">
+      <DependentUpon>FrmLibroUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDPrestamo\FrmPrestamoCreate.resx">
+      <DependentUpon>FrmPrestamoCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDPrestamo\FrmPrestamoHistoricoRead.resx">
+      <DependentUpon>FrmPrestamoHistoricoRead.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDPrestamo\FrmPrestamoRead.resx">
+      <DependentUpon>FrmPrestamoRead.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDUsuario\FrmNewPasswordUpdate.resx">
+      <DependentUpon>FrmNewPasswordUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDUsuario\FrmUsuarioCreate.resx">
+      <DependentUpon>FrmUsuarioCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDUsuario\FrmUsuarioNewPassword.resx">
+      <DependentUpon>FrmUsuarioNewPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDUsuario\FrmUsuarioRead.resx">
+      <DependentUpon>FrmUsuarioRead.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\CRUDUsuario\FrmUsuarioUpdate.resx">
+      <DependentUpon>FrmUsuarioUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmAcercaDe.resx">
+      <DependentUpon>FrmAcercaDe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmConfiguracionUpdate.resx">
+      <DependentUpon>FrmConfiguracionUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmPpal.resx">
+      <DependentUpon>FrmPpal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm\FrmSplash.resx">
+      <DependentUpon>FrmSplash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\libros.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\libros2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\librosBuena.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoAPP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoPrincipal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loginLogIn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loginLogIn200x200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loginLogIn100x100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loginLogIn150x150.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconAnadir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconAnadir1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconEditar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconBorrar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconEditar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AccesoDatos\AccesoDatos.csproj">
+      <Project>{c31c5bad-6ff5-4fe0-8020-3bac886c7bfe}</Project>
+      <Name>AccesoDatos</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconImagen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resetPassword.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resetPassword1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fechaHasta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fechaHasta2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\devolverLibro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="logoPrincipal %281%29.ico" />
+    <None Include="Resources\imagenVerFotoFinal.png" />
+    <None Include="Resources\iconVerImagenBueno.png" />
+    <None Include="Resources\iconVerImagen.png" />
+    <None Include="Resources\imagenSinFondooBuena.jpg" />
+    <None Include="Resources\image-not-found-1.png" />
+    <None Include="Resources\imgSalirBuena.png" />
+    <None Include="Resources\imgSalir.png" />
+    <None Include="Resources\imagenFondoPpal.jpg" />
+    <None Include="Resources\imagenFondoPpal.jpeg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\build\net45\Microsoft.SqlServer.SqlManagementObjects.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\build\net45\Microsoft.SqlServer.SqlManagementObjects.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\build\net45\Microsoft.SqlServer.SqlManagementObjects.targets" Condition="Exists('..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\build\net45\Microsoft.SqlServer.SqlManagementObjects.targets')" />
+</Project>
